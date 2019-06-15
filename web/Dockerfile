@@ -1,6 +1,6 @@
 FROM jekyll/jekyll:3.8
 
-ADD duckieweb/ /srv/jekyll/
+ADD duckieweb/ /srv/jekyll/duckieweb/
 
 COPY entrypoint.sh /
 

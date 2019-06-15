@@ -8,3 +8,5 @@ services:
   ros:
     build:
       context: ./ros
+    ports:
+      - "9090:9090"

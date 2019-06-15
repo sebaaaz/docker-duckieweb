@@ -1,4 +1,3 @@
 #! /bin/bash
 
-cd /srv/jekyll
-jekyll serve
+jekyll serve -s /srv/jekyll/duckieweb
