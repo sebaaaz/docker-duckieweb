@@ -1,12 +1,16 @@
 version: '3'
 services:
   web:
-    build:
-      context: ./web
+    build: ./web
+    container_name: duckieweb_container
     ports:
       - "4000:4000"
-  ros:
-    build:
-      context: ./ros
+
+  rosbridge:
+    build: ./ros
+    container_name: rosbridge_container
     ports:
       - "9090:9090"
+      - "11311:11311"
+    expose:
+      - "9090"

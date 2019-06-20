@@ -1,9 +1,6 @@
-FROM jekyll/jekyll:3.8
+FROM jekyll/minimal:3.8
+MAINTAINER Sebastián Zapata "szapata@dcc.uchile.cl"
 
 ADD duckieweb/ /srv/jekyll/duckieweb/
 
-COPY entrypoint.sh /
-
-RUN chmod +x /entrypoint.sh
-
-ENTRYPOINT ["/entrypoint.sh"]
+CMD ["jekyll", "serve", "-s", "/srv/jekyll/duckieweb"]

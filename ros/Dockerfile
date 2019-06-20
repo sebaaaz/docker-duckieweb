@@ -1,7 +1,4 @@
 FROM rosbridge
+MAINTAINER Sebastián Zapata "szapata@dcc.uchile.cl"
 
-COPY ros_entrypoint.sh /
-
-RUN chmod +x /ros_entrypoint.sh
-
-ENTRYPOINT ["/ros_entrypoint.sh"]
+CMD ["roslaunch", "rosbridge_server", "rosbridge_websocket.launch"]
