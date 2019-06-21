@@ -12,3 +12,4 @@ services:
     ports:
       - "9090:9090"
       - "11311:11311"
+    network_mode: "host"

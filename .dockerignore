@@ -1,0 +1,5 @@
+# simulator to run in the local machine
+simulador.py
+
+# ignores git
+.git

@@ -1,6 +1,6 @@
 FROM jekyll/minimal:3.8
 MAINTAINER Sebastián Zapata "szapata@dcc.uchile.cl"
 
-ADD duckieweb/ /srv/jekyll/duckieweb/
+COPY duckieweb/ /srv/jekyll/duckieweb/
 
 CMD ["jekyll", "serve", "-s", "/srv/jekyll/duckieweb"]
