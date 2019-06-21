@@ -9,7 +9,8 @@ services:
   rosbridge:
     build: ./ros
     container_name: rosbridge_container
-    ports:
-      - "9090:9090"
-      - "11311:11311"
+    # activate ports only if network_mode is set to default
+    #ports:
+    #  - "9090:9090"
+    #  - "11311:11311"
     network_mode: "host"
