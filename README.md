@@ -23,3 +23,27 @@ Algunas soluciones posibles que se estarán probando:
 - Ejecutar "roscore" en la máquina host y comunicar todos los contenedores hacia este ros-master alojado en el host. (no me agrada mucho esta solución, pues quiero evitar que el PC interfiera con las conexiones entre los contenedores).
 
 Finalmente agregar que es posible tener todos los contenedores alojados en el host (más o menos la tercera solución planteada), pero esto deja de ser viable cuando se quieren testear muchos duckiebots a la vez, pues no permite diferenciación entre contenedores.
+
+# Ejemplo error actual:
+Para un entendimiento literal del error, este ocurre precisamente al realizar en la terminal:
+```bash
+rosnode info /duck_xxxxxxxxxx
+```
+Con xxxxx el nombre del contenedor asociado. Se genera el siguiente error:
+```
+Node [/duck_cfcc223f7421]
+Publications: 
+ * /duck_cfcc223f7421/wheels_driver_node/car_cmd [duckietown_msgs/Twist2DStamped]
+ * /rosout [rosgraph_msgs/Log]
+
+Subscriptions: None
+
+Services: 
+ * /duck_cfcc223f7421/get_loggers
+ * /duck_cfcc223f7421/set_logger_level
+
+
+contacting node http://duckiebot-cfcc223f7421:38257/ ...
+ERROR: Communication with node[http://duckiebot-cfcc223f7421:38257/] failed!
+
+```

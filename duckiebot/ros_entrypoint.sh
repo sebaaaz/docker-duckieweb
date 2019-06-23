@@ -5,5 +5,5 @@ set -e
 source "/opt/ros/$ROS_DISTRO/setup.bash"
 source "/duckietown_ws/devel/setup.bash"
 export ROS_MASTER_URI=http://ros-master:11311
-#export ROS_IP=duckiebot-$HOSTNAME
+export ROS_HOSTNAME=duckiebot-$HOSTNAME
 exec "$@"
