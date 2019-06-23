@@ -1,51 +1,32 @@
 #!/usr/bin/env python
 
-import cv2
-import rospy #importar ros para python
+import rospy, os
+from random import random
 from time import sleep
-from duckietown_msgs.msg import Twist2DStamped # importar mensajes de ROS tipo String y tipo Int32
-
+from duckietown_msgs.msg import Twist2DStamped
 
 class Simulador(object):
-	def __init__(self, args):
+	def __init__(self):
 		super(Simulador, self).__init__()
-		self.args = args
-		self.publisher = rospy.Publisher("/duckiebot/wheels_driver_node/car_cmd", Twist2DStamped, queue_size=10)
+		self.publisher = rospy.Publisher("/duck_"+os.environ['HOSTNAME']+"/wheels_driver_node/car_cmd", Twist2DStamped, queue_size=1)
 		self.twist = Twist2DStamped()
-		
-		nothing = lambda x: x
 
-		cv2.namedWindow('Simulador')
-		cv2.createTrackbar('Linear','Simulador',100,200,nothing)
-		cv2.createTrackbar('Angular','Simulador',100,200,nothing)
-
-
-	def actualizar(self):
+	def publicar(self):
 		while 1:
-			k = cv2.waitKey(1)
-			if k == 27:
-				break
-
-			linear = cv2.getTrackbarPos('Linear','Simulador') - 100
-			angular = cv2.getTrackbarPos('Angular','Simulador') - 100
-
-			linear = linear / 100.0
-			angular = angular / -12.5
-
-
-			self.twist.v = linear
-			self.twist.omega = angular
-			
+			self.twist.v 	 = random()*2 - 1
+			self.twist.omega = random()*16 - 8
 			self.publisher.publish(self.twist)
-			sleep(0.01)
 
 
 def main():
-	rospy.init_node('simulador') #creacion y registro del nodo!
-
-	obj = Simulador('args') # Crea un objeto del tipo Simulador, cuya definicion se encuentra arriba
-
-	obj.actualizar() #llama al metodo publicar del objeto obj de tipo Simulador
+	rospy.init_node("duck_"+os.environ['HOSTNAME'])
+	duckiebot = Simulador()
+	while not rospy.is_shutdown():
+		duckiebot.publicar()
+		sleep(2)
 
 if __name__ =='__main__':
-	main()
+	try:
+		main()
+	except rospy.ROSInterruptException:
+		pass
