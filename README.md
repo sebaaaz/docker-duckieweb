@@ -15,7 +15,7 @@ docker-compose up --scale duckiebot=3
 
 ## Problemas actuales
 Los simuladores aún no se encuentran full operativos dado que actualmente se está mejorando el modo de conexión entre los contenedores. Dado esto, el problema actual es la dificultad para abrir todos los puertos que usa ROS para generar la comunicación entre nodos, pues, sin estos puertos abiertos no existe comunicación bidireccional entre host y contenedores o inter-contenedores.
-Considerar que cada contenedor puede ser visto como una máquina diferente para ROS).
+(Considerar que cada contenedor puede ser visto como una máquina diferente para ROS).
 
 Algunas soluciones posibles que se estarán probando:
 - Abrir manualmente todos los puertos mediante el archivo docker-compose (costoso y es un costo de tiempo tremendo en cada ejecución).
