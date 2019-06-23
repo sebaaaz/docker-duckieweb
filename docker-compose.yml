@@ -1,5 +1,13 @@
 version: '3'
 services:
+  ros-master:
+    build: ./rosmaster
+    container_name: ros-master
+    ports:
+      - "11311:11311"
+    command:
+      - roscore
+
   web:
     build: ./web
     container_name: duckieweb_container
@@ -7,10 +15,17 @@ services:
       - "4000:4000"
 
   rosbridge:
-    build: ./ros
+    build: ./rosbridge
     container_name: rosbridge_container
-    # activate ports only if network_mode is set to default
-    #ports:
-    #  - "9090:9090"
-    #  - "11311:11311"
-    network_mode: "host"
+    ports:
+      - "9090:9090"
+    depends_on:
+      - ros-master
+    command:
+      - roslaunch
+      - --wait
+      - rosbridge_server
+      - rosbridge_websocket.launch
+
+  duckiebot:
+    build: ./duckiebot

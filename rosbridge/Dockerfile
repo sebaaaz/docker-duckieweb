@@ -10,4 +10,4 @@ RUN /bin/bash -c "source /ros_entrypoint.sh; cd /duckietown_ws/; catkin_make"
 
 ADD ros_entrypoint.sh /
 
-CMD ["roslaunch", "rosbridge_server", "rosbridge_websocket.launch"]
+# CMD ["roslaunch", "rosbridge_server", "rosbridge_websocket.launch"]
