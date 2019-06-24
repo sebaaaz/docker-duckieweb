@@ -18,14 +18,14 @@ Los simuladores aún no se encuentran full operativos dado que actualmente se es
 (Considerar que cada contenedor puede ser visto como una máquina diferente para ROS).
 
 Algunas soluciones posibles que se estarán probando:
-- Abrir manualmente todos los puertos mediante el archivo docker-compose (costoso y es un costo de tiempo tremendo en cada ejecución).
-- Investigar más acerca de las variables de entorno que usa ROS y como permite comunicar máquinas bidireccionalmente (solución óptima y a la cual espero llegar).
+- ~~Abrir manualmente todos los puertos mediante el archivo docker-compose (costoso y es un costo de tiempo tremendo en cada ejecución).~~ **Muy costoso, solución no viable.**
+- ~~Investigar más acerca de las variables de entorno que usa ROS y como permite comunicar máquinas bidireccionalmente (solución óptima y a la cual espero llegar).~~ **Las variables están bien seteadas, las direcciones son resueltas, es solo problema de puertos.**
 - Ejecutar "roscore" en la máquina host y comunicar todos los contenedores hacia este ros-master alojado en el host. (no me agrada mucho esta solución, pues quiero evitar que el PC interfiera con las conexiones entre los contenedores).
 
 Finalmente agregar que es posible tener todos los contenedores alojados en el host (más o menos la tercera solución planteada), pero esto deja de ser viable cuando se quieren testear muchos duckiebots a la vez, pues no permite diferenciación entre contenedores.
 
 # Ejemplo error actual:
-Para un entendimiento literal del error, este ocurre precisamente al realizar en la terminal:
+Para un entendimiento literal del error, este ocurre precisamente al realizar en la terminal (en el host):
 ```bash
 rosnode info /duck_xxxxxxxxxx
 ```

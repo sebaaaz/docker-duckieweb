@@ -10,13 +10,13 @@ services:
 
   web:
     build: ./web
-    container_name: duckieweb_container
+    container_name: web
     ports:
       - "4000:4000"
 
   rosbridge:
     build: ./rosbridge
-    container_name: rosbridge_container
+    container_name: rosbridge
     ports:
       - "9090:9090"
     depends_on:
