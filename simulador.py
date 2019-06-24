@@ -12,18 +12,18 @@ class Simulador(object):
 		self.twist = Twist2DStamped()
 
 	def publicar(self):
-		while 1:
-			self.twist.v 	 = random()*2 - 1
-			self.twist.omega = random()*16 - 8
-			self.publisher.publish(self.twist)
+		self.twist.v 	 = random()*2 - 1
+		self.twist.omega = random()*16 - 8
+		self.publisher.publish(self.twist)
 
 
 def main():
 	rospy.init_node("duck_"+os.environ['HOSTNAME'])
 	duckiebot = Simulador()
+	r = rospy.Rate(1)
 	while not rospy.is_shutdown():
 		duckiebot.publicar()
-		sleep(2)
+		r.sleep()
 
 if __name__ =='__main__':
 	try:

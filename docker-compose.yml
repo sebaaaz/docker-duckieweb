@@ -3,22 +3,24 @@ services:
   ros-master:
     build: ./rosmaster
     container_name: ros-master
-    ports:
-      - "11311:11311"
+    # ports:
+      # - "11311:11311"
+    network_mode: host
     command:
       - roscore
 
   web:
     build: ./web
     container_name: web
-    ports:
-      - "4000:4000"
+    # ports:
+      # - "4000:4000"
+    network_mode: host
 
   rosbridge:
     build: ./rosbridge
     container_name: rosbridge
-    ports:
-      - "9090:9090"
+    # ports:
+      # - "9090:9090"
     depends_on:
       - ros-master
     command:
@@ -26,6 +28,10 @@ services:
       - --wait
       - rosbridge_server
       - rosbridge_websocket.launch
+    network_mode: host
 
   duckiebot:
     build: ./duckiebot
+    network_mode: host
+
+# cat /dev/urandom | tr -dc 'a-zA-Z0-9' | fold -w 32 | head -n 1
