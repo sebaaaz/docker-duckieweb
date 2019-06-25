@@ -1,0 +1,121 @@
+<!DOCTYPE html5>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+	<title>Duckie Web</title>
+	<link rel="shortcut icon" type="image/ico" href="/img/duckietown.ico"/>
+	<link rel="stylesheet" href="/css/bootstrap.css">
+	<link rel="stylesheet" href="/css/style.css">
+	<script src="/js/jquery-3-3-1.js"></script>
+	<script src="/js/ROSLIB/eventemitter2.min.js"></script>
+	<script src="/js/ROSLIB/roslib.min.js"></script>
+	<script src="/js/ros.js"></script>
+	<script src="/js/main.js"></script>
+	<script src="/js/bootstrap.js"></script>
+</head>
+
+
+<body>
+<div class="container-fluid">	
+<div class="row">
+	<div id="lbar" class="width col-md-2">
+		<div class="row">
+		<div class="col-md-4">
+			<img id="logopato" src="/img/dtlogo.png"/>
+		</div>
+			<div class="col-md-8">
+				<p id="duckie">Duckie</p>
+				<p id="web">Web</p>
+			</div>
+		</div>
+		
+		<hr />
+
+		<div class="row">
+		<div class="col-md-12 barral">
+			<h5 id="contador" class="text-md-center titulosBarra font-weight-bold">DUCKIEBOTS</h5>
+			<div id= "cargandoPatos" class="text-md-center">
+				<p>CARGANDO...</p>
+			</div>
+			<div>
+				<div class="row">
+					<ul id="listaPatos"></ul>
+				</div>
+			</div>
+		
+		<hr />
+		
+			<div>
+				<h6 class="text-md-center titulosBarra font-weight-bold">AÑADIR PATO</h6>
+				<form>
+					<div class="form-group">
+						<label for="nombrePato">Nombre</label>
+						<input type="text" class="form-control formulario" id="nombrePato" placeholder="Ingresa un nombre">
+					</div>
+					<div class="form-group">
+						<label for="ip">IP</label>
+						<input type="text" class="form-control formulario" id="ip" placeholder="Ingresa una IP">
+					</div>
+					<button id="addIP" class="btn btn-primary" type="button">Añadir</button>
+				</form>
+			</div>
+		</div>
+	</div>
+</div>
+
+	<div id="contenido" class="col-md-10">
+		<p id="duckiebotN">Duckiebot N</p>
+		<hr />
+
+		<div class="row">
+			<div class="col-md-1"></div>
+			<div class="col-md-5 info">
+				<p>VELOCIDAD LINEAL</p>
+			</div>
+			<div class="col-md-5 info">
+				<p>VELOCIDAD ANGULAR</p>
+			</div>
+			<div class="col-md-1"></div>
+		</div>
+
+		<div class="row">
+		<div class="col-md-1"></div>
+		<div class="col-md-5 info">
+			<div class="row">
+				<div class="col-md-1"></div>
+				<div id="barraV" class="col-md-2">
+					<div class="row h-100">
+						<div id="indicadorV" class="col-md-12"></div>
+					</div>
+				</div>
+				<div class="col-md-2"></div>
+				<div class="col-md-6 valorBruto">
+					<p id="quacklometers">?</p>
+					<p>QUACKLOMETERS</p>
+				</div>
+				<div class="col-md-1"></div>
+			</div>
+		</div>
+
+		<div class="col-md-5 info">
+			<div class="row">
+				<div class="col-md-3"></div>
+				<div class="col-md-6 valorBruto">
+					<p id="quackdianes">?</p>
+					<p>QUACKDIANS</p>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-2"></div>
+				<div id="barraH" class="col-md-8">
+					<div class="row h-100 w-100">
+						<div id="indicadorH"></div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>	
+	</div>
+</div>
+</body>
+</html>
