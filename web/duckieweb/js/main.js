@@ -8,7 +8,7 @@ $(function() {
 var duckiebots = [];
 
 var ros = new ROSLIB.Ros({
-  url : 'ws://rosbridge:9090'
+  url : 'ws://localhost:9090'
 });
 
 var topicTypeClient = new ROSLIB.Service({
@@ -34,7 +34,15 @@ function cargarVistaPatos(){
 			pato = name.substring(name.indexOf("_")+1, name.indexOf("/"));
 			$("#listaPatos").append('<li><div class="form-inline"><img src="/img/on.png"/><div class="cajaNombrePatoLista" id='+pato+'>'+'<div class="F">'+pato+'</div></div></div></li>'); //mostrar lista patos
 			$("#"+pato).click(function() {
-				suscribirVelocidad(ros, pato);
+				try {
+					speed.unsubscribe();
+					suscribirVelocidad(ros, this.id);
+					$("#duckiebotN").text(this.id);
+				}
+				catch {
+					suscribirVelocidad(ros, this.id);
+					$("#duckiebotN").text(this.id);
+				}
 			});
 		}
 	};

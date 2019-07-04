@@ -18,7 +18,7 @@ docker-compose up -d --scale duckiebot=3
 Al suscribirse a un tópico, solo este es visualizado aunque otro sea clickeado. Arreglar este error es prioridad.
 
 ## Work in progress
-- Suscribirse y desuscribirse de los tópicos [URGENTE]
+- ~~ Suscribirse y desuscribirse de los tópicos [URGENTE] ~~ (Listo)
 - Automatizar comprobación automática de nuevos duckiebots conectados y publicando mensajes.
 - Mejorar Dockerfiles y docker-compose.yaml
 - Reducir peso de los contenedores.

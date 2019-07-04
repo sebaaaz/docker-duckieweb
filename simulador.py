@@ -1,15 +1,14 @@
 #!/usr/bin/env python
 
-import rospy, os
+import rospy, socket
 from random import random
 from time import sleep
 from duckietown_msgs.msg import Twist2DStamped
 
 class Simulador(object):
-	def __init__(self):
-		super(Simulador, self).__init__()
-		self.publisher = rospy.Publisher("/duck_"+os.environ['HOSTNAME']+"/wheels_driver_node/car_cmd", Twist2DStamped, queue_size=1)
-		self.twist = Twist2DStamped()
+	# publisher = rospy.Publisher("/duck_"+socket.gethostname()+"/wheels_driver_node/car_cmd", Twist2DStamped, queue_size=1)
+	publisher = rospy.Publisher("/duck_"+"simulator"+"/wheels_driver_node/car_cmd", Twist2DStamped, queue_size=1)
+	twist = Twist2DStamped()
 
 	def publicar(self):
 		self.twist.v 	 = random()*2 - 1
@@ -18,7 +17,8 @@ class Simulador(object):
 
 
 def main():
-	rospy.init_node("duck_"+os.environ['HOSTNAME'])
+	# rospy.init_node("duck_"+socket.gethostname())
+	rospy.init_node("duck_"+"simulator")
 	duckiebot = Simulador()
 	r = rospy.Rate(1)
 	while not rospy.is_shutdown():
