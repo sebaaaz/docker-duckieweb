@@ -15,9 +15,6 @@ Para simular varios duckiebots, simplemente escalar este servicio con docker-com
 docker-compose up -d --scale duckiebot=3
 ```
 
-## Problemas encontrados
-Al suscribirse a un tópico, solo este es visualizado aunque otro sea clickeado. Arreglar este error es prioridad.
-
 ## Work in progress
 - Automatizar comprobación automática de nuevos duckiebots conectados y publicando mensajes.
 - Reducir peso de los contenedores.
