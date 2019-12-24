@@ -5,6 +5,7 @@ services:
     container_name: ros-master
     command:
       - roscore
+
   web:
     build: ./web
     container_name: web
