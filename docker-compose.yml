@@ -8,6 +8,11 @@ services:
   web:
     build: ./web
     container_name: web
+    command:
+      - jekyll
+      - serve
+      - -s
+      - /srv/jekyll/duckieweb
     ports:
       - "4000:4000"
 
@@ -28,7 +33,8 @@ services:
 
   duckiebot:
     build: ./duckiebot
+    command:
+      - python2.7
+      - simulador.py
     environment:
       - ROS_MASTER_URI=http://ros-master:11311
-    
-# cat /dev/urandom | tr -dc 'a-zA-Z0-9' | fold -w 32 | head -n 1

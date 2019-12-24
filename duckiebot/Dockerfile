@@ -9,4 +9,4 @@ COPY simulador.py /
 
 ADD ros_entrypoint.sh /
 
-CMD ["python2.7", "simulador.py"]
+# CMD ["python2.7", "simulador.py"]

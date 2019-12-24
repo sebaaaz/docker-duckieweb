@@ -11,8 +11,9 @@ class Simulador():
 	twist = Twist2DStamped()
 
 	def publicar(self):
-		self.twist.v 	 = self.value*2 - 1
-		self.twist.omega = self.value*16 - 8
+		diff = random()
+		self.twist.v 	 = self.value*2 - 1 + diff*0.1
+		self.twist.omega = self.value*16 - 8 + diff*0.1
 		self.publisher.publish(self.twist)
 
 

@@ -1,6 +1,6 @@
 $(function() {
 	getTopics();
-	alert("Esta alerta es generada automáticamente para cargar los duckiebots :)\nPuedes cerrarla cuando quieras.");
+	alert("Esta alerta es generada automáticamente para cargar los duckiebots :)\nSi no aparecen en la lista puedes recargar la página.\nEl tiempo dependerá de la cantidad de duckiebots activados.");
 	console.log(duckiebots);
 	cargarVistaPatos();
 });
