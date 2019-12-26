@@ -6,17 +6,6 @@ services:
     command:
       - roscore
 
-  web:
-    build: ./web
-    container_name: web
-    command:
-      - jekyll
-      - serve
-      - -s
-      - /srv/jekyll/duckieweb
-    ports:
-      - "4000:4000"
-
   rosbridge:
     build: ./rosbridge
     container_name: rosbridge
@@ -34,8 +23,23 @@ services:
 
   duckiebot:
     build: ./duckiebot
+    depends_on:
+      - ros-master
     command:
-      - python2.7
-      - simulador.py
+      - roslaunch
+      - duckiebot_simulador
+      - duckiebot.launch
+      - --wait
     environment:
       - ROS_MASTER_URI=http://ros-master:11311
+
+  web:
+    build: ./web
+    container_name: web
+    command:
+      - jekyll
+      - serve
+      - -s
+      - /srv/jekyll/duckieweb
+    ports:
+      - "4000:4000"

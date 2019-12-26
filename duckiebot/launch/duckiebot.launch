@@ -1,0 +1,4 @@
+<launch>
+	<param name="duck_$(env HOSTNAME)_IP" value="$(env ROS_HOSTNAME)" />
+	<node pkg="duckiebot_simulador" type="simulador.py" name="duck_$(env HOSTNAME)" output="screen" />
+</launch>
