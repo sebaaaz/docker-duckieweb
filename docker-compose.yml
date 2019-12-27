@@ -43,3 +43,5 @@ services:
       - /srv/jekyll/duckieweb
     ports:
       - "4000:4000"
+    # volumes:
+      # - ./temp-web/duckieweb/:/srv/jekyll/duckieweb/
