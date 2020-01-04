@@ -17,4 +17,4 @@ docker-compose up -d --scale duckiebot=3
 
 ## Work in progress
 - Automatizar comprobación automática de nuevos duckiebots conectados y publicando mensajes.
-- Reducir peso de los contenedores.
+- ~~Reducir peso de los contenedores.~~ En esta rama se hace uso de **Alpine Linux** que permitió reducir el peso en un 50% aprox.
