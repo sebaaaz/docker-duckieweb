@@ -2,7 +2,7 @@
 
 # docker-duckieweb
 Repositorio para levantar servicios de duckieweb en docker.
-Simplemente dirigirse a la carpeta y en la terminar correr el siguiente comando:
+Instalar docker, docker-compose, dirigirse a la carpeta y en la terminal y correr el siguiente comando:
 ```bash
 docker-compose up
 ```

@@ -1,10 +1,10 @@
 $(function() {
-	getTopics();
-	alert("Esta alerta es generada automáticamente para cargar los duckiebots :)\nSi no aparecen en la lista puedes recargar la página.\nEl tiempo dependerá de la cantidad de duckiebots activados.");
+	getDuckiebots();
+	alert("Si no aparecen los duckiebots en la lista puedes recargar la página.\nEl tiempo dependerá de la cantidad de duckiebots activados.\nEstamos trabajando para mejorar el sistema de carga.");
 	cargarVistaPatos();
 });
 
-var duckiebots = [];
+var duckiebots = {};
 
 var ros = new ROSLIB.Ros({
   url : 'ws://localhost:9090'
@@ -18,49 +18,47 @@ var topicTypeClient = new ROSLIB.Service({
 
 var request = new ROSLIB.ServiceRequest({});
 
-function getTopics() {
+function getDuckiebots() {
 	topicTypeClient.callService(request, function(result) {
 		topics = result.topics
 		for (var i = 0; i < topics.length; i++) {
 			name = topics[i];
 			if (name.substring(1,5) == "duck") {
-				duckiebots.push(name.substring(name.indexOf("_")+1, name.indexOf("/", 4)));
+				name = name.substring(name.indexOf("_")+1, name.indexOf("/", 4));
+				addDuckiebot(name);
 			}
 		}
 	});
 }
 
-function changeName(name) {
-	$("#duckiebotN").text(name);
-}
-
-function changeIP(IP) {
-	$("#duckiebotIP").text(IP);
-}
-
-function setDuckIP(duckName) {
+function addDuckiebot(duckiebot_name) {
 	param = new ROSLIB.Param({
 		ros : ros,
-		name : "duck_"+duckName+"_IP"
+		name : "duck_"+duckiebot_name+"_IP"
 	});
 	param.get(function(value) {
-		changeIP(value);
+		duckiebots[duckiebot_name] = {}
+		duckiebots[duckiebot_name]["nombre"] = duckiebot_name
+		duckiebots[duckiebot_name]["ip"] = value
 	});
 }
 
-function cargarPato(duckName) {
-		try { speed.unsubscribe(); }
-		catch { }
-		suscribirVelocidad(ros, duckName);
-		changeName(duckName);
-		setDuckIP(duckName);
+function showDuckiebotInfo(duckiebot_name) {
+	$("#duckiebotN").text(duckiebots[duckiebot_name]["nombre"]);
+	$("#duckiebotIP").text(duckiebots[duckiebot_name]["ip"]);
+}
+
+function cargarPato(duckiebot_name) {
+		try {speed.unsubscribe();}
+		catch {}
+		suscribirVelocidad(ros, duckiebot_name);
+		showDuckiebotInfo(duckiebot_name);
 }
 
 function cargarVistaPatos(){
 	$("#cargandoPatos").hide(); //ocultar loading
 	$("#listaPatos").text("");
-	for (var i = 0; i < duckiebots.length; i++) {
-		pato = duckiebots[i];
+	for (var pato in duckiebots) {
 		elemento = $('<li><div class="form-inline"><img src="/img/on.png"/><div class="cajaNombrePatoLista" id='+pato+'>'+'<div class="F">'+pato+'</div></div></div></li>');
 		elemento.attr('onclick', "cargarPato('"+pato+"');")
 		$("#listaPatos").append(elemento); //mostrar lista patos
